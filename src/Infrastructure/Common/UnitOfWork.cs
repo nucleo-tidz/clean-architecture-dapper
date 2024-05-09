@@ -1,9 +1,5 @@
-﻿using Applictaion.Common.Interface;
-using Microsoft.Extensions.Configuration;
-using System.Data;
-using Microsoft.Data.SqlClient;
-using MediatR;
-using Applictaion.Common.Event;
+﻿using Applictaion.Common.Event;
+using Applictaion.Common.Interface;
 using Domain.Common;
 
 namespace Infrastructure.Common
