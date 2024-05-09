@@ -10,3 +10,8 @@
 /src/Api/Api/obj
 /src/Infrastructure/obj/Debug/net8.0
 /src/Infrastructure/obj
+/src/Applictaion/bin/Debug/net8.0
+/src/Infrastructure/bin/Debug/net8.0
+/src/Domain/bin/Debug/net8.0
+/src/Api/Api/bin/Debug/net8.0
+/src/Api/Api/Api.csproj.user

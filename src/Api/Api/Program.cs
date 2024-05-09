@@ -1,25 +1,26 @@
+using Api;
+using Microsoft.AspNetCore.Builder;
+using NSwag;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
+    var env = hostingContext.HostingEnvironment;
+    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+    config.AddEnvironmentVariables();
+});
+builder.Services.AddServices(builder.Configuration)
+    .AddSwagger().AllowCors(builder.Configuration).AddHealthCheck();
+var app = builder.Build();
+app.UseOpenApi();
+app.UseRouting();
 app.MapControllers();
-
-app.Run();
+app.UseSwaggerUi(c => { c.Path = string.Empty; });
+app.MapHealthChecks("/health/ready").AllowAnonymous();
+app.MapHealthChecks("/health/live").AllowAnonymous();
+app.UseCors("CorsPolicy");
+await app.RunAsync();
