@@ -15,7 +15,9 @@ namespace Infrastructure
         }
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
-            services.AddTransient<IOrderRepository, OrderRepository>().AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IOrderRepository, OrderRepository>()
+                .AddTransient<IInventoryRepository, InventoryRepository>()
+                .AddTransient<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

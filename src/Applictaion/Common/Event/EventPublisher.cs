@@ -1,11 +1,5 @@
 ﻿using Domain.Common;
 using MediatR;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Applictaion.Common.Event
 {
@@ -17,7 +11,7 @@ namespace Applictaion.Common.Event
 
             _mediator = mediator;
         }
-       
+
 
         public void Publish(IDomainEvent[] events)
         {

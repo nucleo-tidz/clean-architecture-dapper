@@ -11,7 +11,7 @@
         {
             events.Add(domainEvents);
         }
-        public void ClearDomainEvents(IDomainEvent domainEvents)
+        public void ClearDomainEvents()
         {
             events.Clear();
         }

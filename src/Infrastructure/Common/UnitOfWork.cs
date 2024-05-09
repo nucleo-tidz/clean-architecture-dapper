@@ -16,7 +16,6 @@ namespace Infrastructure.Common
         public UnitOfWork(ConnectionFactory connectionFactory, IEventPublisher eventPublisher) 
         {
             _connectionFactory = connectionFactory;
-           
             _eventPublisher = eventPublisher;
         }
         
@@ -30,17 +29,16 @@ namespace Infrastructure.Common
             {
                 _eventPublisher.Publish(entity.events.ToArray());
                 _connectionFactory.Transaction.Commit();
-              
             }
             catch
             {
                 _connectionFactory.Transaction.Rollback();
+                throw;
 
             }
             finally
             {
                 _connectionFactory.Transaction.Dispose();
-            
             }
         }
         public void Dispose()
