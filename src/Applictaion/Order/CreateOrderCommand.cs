@@ -1,5 +1,6 @@
 ﻿using Applictaion.Common.Interface;
 using Domain.Entities;
+using Domain.Events;
 using Domain.ValueObjects;
 using MediatR;
 using domain = Domain;
@@ -16,9 +17,11 @@ namespace Applictaion.Order
     internal class CreateOrderHandler : IRequestHandler<CreateOrderCommand, int>
     {
         private readonly IOrderRepository _orderRepository;
-        public CreateOrderHandler(IOrderRepository orderRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public CreateOrderHandler(IOrderRepository orderRepository, IUnitOfWork unitOfWork)
         {
             _orderRepository = orderRepository;
+            _unitOfWork= unitOfWork;
         }
         public async Task<int> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
         {
@@ -27,7 +30,11 @@ namespace Applictaion.Order
             {
                 order.LineItems.Add(LineItem.Create(1, Product.Create(_, "TV", "NA", Price.Create(1000 * _, "INR"))));
             });
-            return await _orderRepository.Save(order);
+            order.AddDomainEvent(new OrderCreatedEvent { OrderId = 1 });
+            _unitOfWork.BeginTransaction();
+            int rows= await _orderRepository.Save(order);
+            _unitOfWork.Commit(order);
+            return rows;
         }
     }
 

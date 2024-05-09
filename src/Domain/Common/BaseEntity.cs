@@ -2,7 +2,7 @@
 {
     public abstract class BaseEntity
     {
-        private readonly List<IDomainEvent> events = new List<IDomainEvent>();
+        public List<IDomainEvent> events = new List<IDomainEvent>();
         public void AddDomainEvent(IDomainEvent domainEvents)
         {
             events.Add(domainEvents);

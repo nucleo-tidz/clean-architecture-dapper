@@ -1,5 +1,7 @@
 ﻿using Applictaion.Common.Interface;
+using Infrastructure.Common;
 using Infrastructure.Repositories;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure
@@ -8,11 +10,12 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
+            services.AddScoped<ConnectionFactory>();
             return services.AddRepository();
         }
         public static IServiceCollection AddRepository(this IServiceCollection services)
         {
-            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>().AddTransient<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }
