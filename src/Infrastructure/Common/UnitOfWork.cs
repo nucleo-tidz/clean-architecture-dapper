@@ -1,25 +1,27 @@
 ﻿using Applictaion.Common.Event;
 using Applictaion.Common.Interface;
 using Domain.Common;
+using static Dapper.SqlMapper;
 
 namespace Infrastructure.Common
 {
+
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ConnectionFactory _connectionFactory;
         private readonly IEventPublisher _eventPublisher;
-
-        public UnitOfWork(ConnectionFactory connectionFactory, IEventPublisher eventPublisher) 
+        public UnitOfWork(ConnectionFactory connectionFactory, IEventPublisher eventPublisher)
         {
             _connectionFactory = connectionFactory;
             _eventPublisher = eventPublisher;
         }
-        
+
         public void BeginTransaction()
         {
-          _connectionFactory.Transaction = _connectionFactory.Connection.BeginTransaction();
+            _connectionFactory.Transaction = _connectionFactory.Connection.BeginTransaction();
         }
-        public void Commit(BaseEntity entity)
+        public void Commit<TEntity>(TEntity entity)
+            where TEntity : BaseEntity
         {
             try
             {
@@ -30,7 +32,6 @@ namespace Infrastructure.Common
             {
                 _connectionFactory.Transaction.Rollback();
                 throw;
-
             }
             finally
             {

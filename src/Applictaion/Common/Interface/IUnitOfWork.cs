@@ -5,7 +5,7 @@ namespace Applictaion.Common.Interface
     public interface IUnitOfWork
     {
         void BeginTransaction();
-        void Commit(BaseEntity entity);
+        void Commit<TEntity>(TEntity entity) where TEntity : BaseEntity;
 
     }
 }
