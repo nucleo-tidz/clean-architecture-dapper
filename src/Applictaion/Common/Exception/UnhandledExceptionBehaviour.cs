@@ -17,7 +17,7 @@ namespace Applictaion.Common
             try
             {
                 return await next();
-            }
+            }            
             catch (Exception ex)
             {
                 var requestName = typeof(TRequest).Name;

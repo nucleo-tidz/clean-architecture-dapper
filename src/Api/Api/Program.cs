@@ -1,4 +1,5 @@
 using Api;
+using Api.MiddleWare;
 using Microsoft.AspNetCore.Builder;
 using NSwag;
 
@@ -17,6 +18,8 @@ builder.Services.AddServices(builder.Configuration)
     .AddSwagger().AllowCors(builder.Configuration).AddHealthCheck();
 var app = builder.Build();
 app.UseOpenApi();
+app.UseErrorHanlder();
+app.UseExceptionHandler(_=>_.UseErrorHanlder());
 app.UseRouting();
 app.MapControllers();
 app.UseSwaggerUi(c => { c.Path = string.Empty; });
