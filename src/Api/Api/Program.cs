@@ -1,7 +1,6 @@
 using Api;
 using Api.MiddleWare;
-using Microsoft.AspNetCore.Builder;
-using NSwag;
+using Api.StartupTask;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +13,7 @@ builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
         .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
     config.AddEnvironmentVariables();
 });
+
 builder.Services.AddServices(builder.Configuration)
     .AddSwagger().AllowCors(builder.Configuration).AddHealthCheck();
 var app = builder.Build();
@@ -25,4 +25,4 @@ app.UseSwaggerUi(c => { c.Path = string.Empty; });
 app.MapHealthChecks("/health/ready").AllowAnonymous();
 app.MapHealthChecks("/health/live").AllowAnonymous();
 app.UseCors("CorsPolicy");
-await app.RunAsync();
+await app.Bootstrap();

@@ -1,4 +1,6 @@
-﻿using Applictaion;
+﻿using Api.Startup;
+using Api.StartupTask;
+using Applictaion;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -9,6 +11,7 @@ namespace Api
 {
     public static class DependecyInjection
     {
+
         internal static IServiceCollection AddServices(this IServiceCollection self, IConfiguration configuration)
         {
             self.AddControllers().AddJsonOptions(options =>
@@ -19,9 +22,11 @@ namespace Api
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
-           
+
             self.AddApplication()
-                .AddInfrastructure();
+                .AddInfrastructure()
+                .AddTransient<IStartupTask, LoadData>()
+                .AddTransient<IStartupTask, Inform>();
             return self;
         }
 
@@ -55,12 +60,12 @@ namespace Api
                 doc.Info.License = new OpenApiLicense
                 {
                     Name = "Ahmar",
-                   
+
                 };
                 doc.ExternalDocumentation = new OpenApiExternalDocumentation { Description = "Nucleotidz PlayGround" };
 
             };
-           
+
             configure.Title = "Nucleotidz.Api";
             configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             configure.DocumentName = version;
