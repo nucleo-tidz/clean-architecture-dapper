@@ -12,9 +12,9 @@ on:
 
 env:  
   DOTNET_VERSION: '8.0.*'
-  docker-file-path: ./Api/Dockerfile
+  docker-file-path: ./src/Api/Dockerfile
   k8s-namespace: dev
-  solution: '${{ github.workspace }}/Rock.Redis.sln'
+  solution: ./src/Api.sln
   manifests-files: |
     ./.github/kubernetes/deployments/api.yml
 jobs:
