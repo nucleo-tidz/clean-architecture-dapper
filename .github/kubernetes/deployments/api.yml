@@ -65,6 +65,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nucleotidz-api-service
+  namespace: dev
   labels:
     app: nucleotidz-api
 spec:
@@ -78,7 +79,8 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nucleotidz-api
+  name: nucleotidz-api-ingress
+  namespace: dev
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
@@ -87,7 +89,6 @@ spec:
   - hosts:
     - api.nucleotidz-test.dev
     secretName: tls-wildcard-nucleotidz-dev
-
   rules:
   - host: api.nucleotidz-test.dev
     http:
