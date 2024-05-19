@@ -13,10 +13,5 @@
 /src/Applictaion/bin/Debug/net8.0
 /src/Infrastructure/bin/Debug/net8.0
 /src/Domain/bin/Debug/net8.0
-/src/Api/Api/bin/Debug/net8.0
-/src/Api/Api/Api.csproj.user
-/src/Api/Api/appsettings.Local.json
-/src/.vs/ProjectEvaluation
-**/[Bb]in/
-**/[Oo]bj/
+
 
