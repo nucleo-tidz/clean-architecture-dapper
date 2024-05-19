@@ -30,7 +30,7 @@ jobs:
 
     - name: build
       run: |
-          dotnet restore
+          dotnet restore ./Api.sln
           dotnet build ./Api.sln --configuration Release
 
     - name: publish
