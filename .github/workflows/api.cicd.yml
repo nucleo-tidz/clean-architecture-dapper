@@ -61,7 +61,7 @@ jobs:
       id: setcontext
       with:
         method: kubeconfig
-        kubeconfig: ${{ secrets.UBE_CONFIG }}
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
     - name: Set Image Pull Secret
       uses: azure/k8s-create-secret@v4
