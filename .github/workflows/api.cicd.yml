@@ -31,7 +31,7 @@ jobs:
     - name: build
       run: |
           dotnet restore
-          dotnet build ./AutomatedEquipmentAvailability.sln --configuration Release
+          dotnet build ./Api.sln --configuration Release
 
     - name: publish
       run: dotnet publish -c Release -o release
