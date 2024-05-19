@@ -86,7 +86,7 @@ spec:
   tls:
   - hosts:
     - api.nucleotidz-test.dev
-    secretName: tls-wildcard-nucleotidz-dev
+    secretName: tls-secret-nucleo
 
   rules:
   - host: api.nucleotidz-test.dev
