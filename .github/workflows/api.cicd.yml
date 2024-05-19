@@ -12,7 +12,7 @@ on:
 
 env:  
   DOTNET_VERSION: '8.0.*'
-  docker-file-path: ./src/Api/Api/Dockerfile
+  docker-file-path: ./src/Api/Dockerfile
   k8s-namespace: dev
   solution: ./src/Api.sln
   manifests-files: |

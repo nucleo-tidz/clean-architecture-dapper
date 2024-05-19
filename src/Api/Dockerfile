@@ -4,18 +4,18 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 8080
-ENV ASPNETCORE_URLS=http://*:8080
+EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Api/Api/Api.csproj", "Api/Api/"]
+COPY ["Api/Api.csproj", "Api/"]
 COPY ["Applictaion/Applictaion.csproj", "Applictaion/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
-RUN dotnet restore "./Api/Api/./Api.csproj"
+RUN dotnet restore "./Api/./Api.csproj"
 COPY . .
-WORKDIR "/src/Api/Api"
+WORKDIR "/src/Api"
 RUN dotnet build "./Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
