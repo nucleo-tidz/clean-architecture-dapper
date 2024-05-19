@@ -17,3 +17,6 @@
 /src/Api/Api/Api.csproj.user
 /src/Api/Api/appsettings.Local.json
 /src/.vs/ProjectEvaluation
+**/[Bb]in/
+**/[Oo]bj/
+
