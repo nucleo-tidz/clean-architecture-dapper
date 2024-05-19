@@ -14,6 +14,7 @@ env:
   DOTNET_VERSION: '8.0.*'
   docker-file-path: ./Api/Dockerfile
   k8s-namespace: dev
+  solution: '${{ github.workspace }}/Rock.Redis.sln'
   manifests-files: |
     ./.github/kubernetes/deployments/api.yml
 jobs:
@@ -30,8 +31,8 @@ jobs:
 
     - name: build
       run: |
-          dotnet restore ./Api.sln
-          dotnet build ./Api.sln --configuration Release
+          dotnet restore $solution
+          dotnet build $solution --configuration Release
 
     - name: publish
       run: dotnet publish -c Release -o release
