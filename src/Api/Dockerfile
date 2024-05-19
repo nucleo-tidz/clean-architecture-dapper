@@ -10,10 +10,10 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY ["Api/Api.csproj", "Api/"]
-COPY ["Applictaion/Applictaion.csproj", "Applictaion/"]
-COPY ["Domain/Domain.csproj", "Domain/"]
-COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["src/Api/Api.csproj", "Api/"]
+COPY ["src/Applictaion/Applictaion.csproj", "Applictaion/"]
+COPY ["src/Domain/Domain.csproj", "Domain/"]
+COPY ["src/Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 RUN dotnet restore "./Api/./Api.csproj"
 COPY . .
 WORKDIR "/src/Api"
