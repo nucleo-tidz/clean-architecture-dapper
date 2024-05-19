@@ -13,5 +13,7 @@
 /src/Applictaion/bin/Debug/net8.0
 /src/Infrastructure/bin/Debug/net8.0
 /src/Domain/bin/Debug/net8.0
+**/[Bb]in/
+**/[Oo]bj/
 
-
+/src/.vs/ProjectEvaluation
