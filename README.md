@@ -1,6 +1,8 @@
 A demo project to showcase usage of dapper with unit of work and domain events 
 Innstall nginx controller
 ```
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
 helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace --set controller.service.externalTrafficPolicy=Local
 ```
 Create TSL secret
