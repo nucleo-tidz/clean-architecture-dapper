@@ -91,7 +91,7 @@ spec:
   #   secretName: nucelotidz-tls-ingress-secret
   rules:
   # - host: nucleotidz-test.dev
-    http:
+  - http:
       paths:
       - path: /
         pathType: Prefix
