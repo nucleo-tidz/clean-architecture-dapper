@@ -90,7 +90,7 @@ spec:
   #   - nucleotidz-test.dev
   #   secretName: nucelotidz-tls-ingress-secret
   rules:
-  - host: nucleotidz-test.dev
+  # - host: nucleotidz-test.dev
     http:
       paths:
       - path: /
