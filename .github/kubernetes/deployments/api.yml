@@ -85,12 +85,12 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - api.nucleotidz-test.dev
-    secretName: nucelotidz-tls-ingress-secret
+  # tls:
+  # - hosts:
+  #   - nucleotidz-test.dev
+  #   secretName: nucelotidz-tls-ingress-secret
   rules:
-  - host: api.nucleotidz-test.dev
+  - host: nucleotidz-test.dev
     http:
       paths:
       - path: /
