@@ -88,7 +88,7 @@ spec:
   #   - nucleotidz-test.dev
   #   secretName: nucelotidz-tls-ingress-secret
   rules:
-   - host: nucleotidz.southindia.clouadapp.azure.com
+   - host: nucleotidz.southindia.cloudapp.azure.com
      http:
         paths:
         - path: /
