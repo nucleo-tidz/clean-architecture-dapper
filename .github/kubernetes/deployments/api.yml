@@ -81,8 +81,8 @@ kind: Ingress
 metadata:
   name: nucleotidz-api-ingress
   namespace: dev
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  # annotations:
+  #   # nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   # tls:
@@ -93,7 +93,7 @@ spec:
   # - host: nucleotidz-test.dev
   - http:
       paths:
-      - path: /api(/|$)(.*)
+      - path: /
         pathType: Prefix
         backend:
           service:
